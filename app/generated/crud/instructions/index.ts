@@ -6,5 +6,6 @@
  * @see https://github.com/codama-idl/codama
  */
 
-export * from "./deposit";
-export * from "./withdraw";
+export * from "./createJournalEntry";
+export * from "./deleteJournalEntry";
+export * from "./updateJournalEntry";

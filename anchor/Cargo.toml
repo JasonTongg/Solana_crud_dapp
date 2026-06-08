@@ -2,6 +2,10 @@
 members = ["programs/*"]
 resolver = "2"
 
+[patch.crates-io]
+libsecp256k1-gen-ecmult = { path = "patches/libsecp256k1-gen-ecmult" }
+libsecp256k1-gen-genmult = { path = "patches/libsecp256k1-gen-genmult" }
+
 [profile.release]
 overflow-checks = true
 lto = "fat"

@@ -12,34 +12,34 @@ import {
   type SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM,
   type SolanaError,
 } from "@solana/kit";
-import { VAULT_PROGRAM_ADDRESS } from "../programs";
+import { CRUD_PROGRAM_ADDRESS } from "../programs";
 
-/** VaultAlreadyExists: Vault already exists */
-export const VAULT_ERROR__VAULT_ALREADY_EXISTS = 0x1770; // 6000
-/** InvalidAmount: Invalid amount */
-export const VAULT_ERROR__INVALID_AMOUNT = 0x1771; // 6001
+/** TitleTooLong: Title exceeds maximum length of 32 characters */
+export const CRUD_ERROR__TITLE_TOO_LONG = 0x1770; // 6000
+/** MessageTooLong: Message exceeds maximum length of 128 characters */
+export const CRUD_ERROR__MESSAGE_TOO_LONG = 0x1771; // 6001
 
-export type VaultError =
-  | typeof VAULT_ERROR__INVALID_AMOUNT
-  | typeof VAULT_ERROR__VAULT_ALREADY_EXISTS;
+export type CrudError =
+  | typeof CRUD_ERROR__MESSAGE_TOO_LONG
+  | typeof CRUD_ERROR__TITLE_TOO_LONG;
 
-let vaultErrorMessages: Record<VaultError, string> | undefined;
+let crudErrorMessages: Record<CrudError, string> | undefined;
 if (process.env.NODE_ENV !== "production") {
-  vaultErrorMessages = {
-    [VAULT_ERROR__INVALID_AMOUNT]: `Invalid amount`,
-    [VAULT_ERROR__VAULT_ALREADY_EXISTS]: `Vault already exists`,
+  crudErrorMessages = {
+    [CRUD_ERROR__MESSAGE_TOO_LONG]: `Message exceeds maximum length of 128 characters`,
+    [CRUD_ERROR__TITLE_TOO_LONG]: `Title exceeds maximum length of 32 characters`,
   };
 }
 
-export function getVaultErrorMessage(code: VaultError): string {
+export function getCrudErrorMessage(code: CrudError): string {
   if (process.env.NODE_ENV !== "production") {
-    return (vaultErrorMessages as Record<VaultError, string>)[code];
+    return (crudErrorMessages as Record<CrudError, string>)[code];
   }
 
   return "Error message not available in production bundles.";
 }
 
-export function isVaultError<TProgramErrorCode extends VaultError>(
+export function isCrudError<TProgramErrorCode extends CrudError>(
   error: unknown,
   transactionMessage: {
     instructions: Record<number, { programAddress: Address }>;
@@ -50,7 +50,7 @@ export function isVaultError<TProgramErrorCode extends VaultError>(
   return isProgramError<TProgramErrorCode>(
     error,
     transactionMessage,
-    VAULT_PROGRAM_ADDRESS,
+    CRUD_PROGRAM_ADDRESS,
     code,
   );
 }

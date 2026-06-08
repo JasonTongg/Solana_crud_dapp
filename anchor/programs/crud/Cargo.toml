@@ -1,12 +1,12 @@
 [package]
-name = "vault"
+name = "crud"
 version = "0.1.0"
-description = "A simple SOL vault program"
+description = "A simple SOL crud program"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "vault"
+name = "crud"
 
 [features]
 default = []

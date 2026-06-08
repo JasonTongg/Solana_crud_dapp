@@ -8,7 +8,7 @@ import { useBalance } from "./lib/hooks/use-balance";
 import { lamportsToSolString } from "./lib/lamports";
 import { useSolanaClient } from "./lib/solana-client-context";
 import { ellipsify } from "./lib/explorer";
-import { VaultCard } from "./components/vault-card";
+import { JournalCard } from "./components/journal-card";
 import { GridBackground } from "./components/grid-background";
 import { ThemeToggle } from "./components/theme-toggle";
 import { ClusterSelect } from "./components/cluster-select";
@@ -98,20 +98,20 @@ export default function Home() {
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <h1 className="font-black tracking-tight text-foreground">
-                  <span className="block text-6xl md:text-7xl">Anchor</span>
-                  <span className="block text-7xl md:text-8xl">Vault</span>
+                  <span className="block text-6xl md:text-7xl">Journal</span>
+                  <span className="block text-7xl md:text-8xl">CRUD</span>
                 </h1>
               </div>
 
               <div className="flex max-w-2xl flex-col gap-3">
                 <p className="text-base leading-relaxed text-foreground/50">
-                  This program creates a personal vault for each user using a
-                  Program Derived Address (PDA). Connect your wallet, deposit
-                  SOL into your vault, and withdraw it anytime. Only you can
-                  access your funds.
+                  Create, read, update, and delete personal journal entries
+                  stored on-chain using Program Derived Addresses (PDAs).
+                  Each entry is owned by your wallet — only you can modify
+                  or delete your own entries.
                 </p>
                 <p className="text-sm leading-relaxed text-foreground/40">
-                  The vault is an{" "}
+                  Built with{" "}
                   <a
                     href="https://www.anchor-lang.com/docs/introduction"
                     target="_blank"
@@ -120,8 +120,16 @@ export default function Home() {
                   >
                     Anchor
                   </a>{" "}
-                  program you can deploy to localnet or devnet and modify
-                  yourself. Check the README for setup instructions.
+                  and{" "}
+                  <a
+                    href="https://github.com/codama-idl/codama"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2"
+                  >
+                    Codama
+                  </a>
+                  . Deploy to localnet or devnet and interact with the UI below.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a
@@ -261,8 +269,8 @@ export default function Home() {
               </section>
             )}
 
-            {/* Vault Program Section */}
-            <VaultCard />
+            {/* Journal CRUD Section */}
+            <JournalCard />
           </div>
         </main>
       </div>
